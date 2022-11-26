@@ -1,8 +1,7 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
 
-public class StrategyTester {
+public class LowercaseStrategyTester {
     public static void main(String[] args) throws IOException {
         String title = "Vibra.txt";
         String test = """
@@ -23,30 +22,24 @@ public class StrategyTester {
                 """;
 
         File file = new File(title);
-        Cipher cipher;
 
-        cipher = new CaesarCipher();
-        cipher = new LowercaseCipher();
-
+        // Component
         OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-        EncryptWriter ew = new EncryptWriter(osw, cipher);
-        PrintWriter writer = new PrintWriter(ew);
+        // Decorator with Lowercase strategy
+        EncryptWriter writer = new EncryptWriter(osw, new LowercaseCipher());
 
-        writer.println("Vibra");
-        writer.printf("%tF\n", new Date());
         writer.write(lyrics);
         writer.close();
 
+        // Component
         InputStreamReader isr = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
-        DecryptReader dr = new DecryptReader(isr, cipher);
-        LineNumberReader reader = new LineNumberReader(dr);
+        // Decorator with Lowercase strategy
+        DecryptReader reader = new DecryptReader(isr, new LowercaseCipher());
 
-        StringBuilder sb = new StringBuilder();
-        String str;
-        while ((str = reader.readLine()) != null) {
-            sb.append(String.format("%02d >> %s\n", reader.getLineNumber(), str));
+        int c;
+        while ((c = reader.read()) != -1) {
+            System.out.print((char) c);
         }
-        System.out.println(sb);
         reader.close();
     }
 }
