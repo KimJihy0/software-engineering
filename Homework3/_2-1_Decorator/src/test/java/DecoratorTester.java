@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DecoratorTester {
     public static void main(String[] args) throws IOException {
-        String title = "Vibra.txt";
+        String title = "decorator-test.txt";
         String lyrics = """
                 밖을 내다봐, 마음이 없어.
                 It's all about the money and the sex.
@@ -18,11 +18,8 @@ public class DecoratorTester {
 
         File file = new File(title);
 
-        // Component
         OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-        // Decorator1
         EncryptWriter ew = new EncryptWriter(osw);
-        // Decorator2
         PrintWriter writer = new PrintWriter(ew);
 
         writer.println("Vibra");
@@ -31,11 +28,8 @@ public class DecoratorTester {
 
         writer.close();
 
-        // Component
         InputStreamReader isr = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
-        // Decorator1
         DecryptReader dr = new DecryptReader(isr);
-        // Decorator2
         LineNumberReader reader = new LineNumberReader(dr);
 
         StringBuilder sb = new StringBuilder();

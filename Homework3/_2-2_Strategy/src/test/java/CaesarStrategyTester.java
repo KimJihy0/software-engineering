@@ -3,13 +3,7 @@ import java.nio.charset.StandardCharsets;
 
 public class CaesarStrategyTester {
     public static void main(String[] args) throws IOException {
-        String title = "Vibra.txt";
-        String test = """
-                abcdefghijklmnopqrstuvwxyz
-                ABCDEFGHIJKLMNOPQRSTUVWXYZ
-                !@#$%^&*()1234567890
-                가나다라마바사아자차카타파하
-                """;
+        String title = "strategy-caesar-test.txt";
         String lyrics = """
                 밖을 내다봐, 마음이 없어.
                 It's all about the money and the sex.

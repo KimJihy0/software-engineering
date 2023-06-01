@@ -3,13 +3,7 @@ import java.nio.charset.StandardCharsets;
 
 public class LowercaseStrategyTester {
     public static void main(String[] args) throws IOException {
-        String title = "Vibra.txt";
-        String test = """
-                abcdefghijklmnopqrstuvwxyz
-                ABCDEFGHIJKLMNOPQRSTUVWXYZ
-                !@#$%^&*()1234567890
-                가나다라마바사아자차카타파하
-                """;
+        String title = "strategy-caesar-test.txt";
         String lyrics = """
                 밖을 내다봐, 마음이 없어.
                 It's all about the money and the sex.
@@ -23,17 +17,13 @@ public class LowercaseStrategyTester {
 
         File file = new File(title);
 
-        // Component
         OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-        // Decorator with Lowercase strategy
         EncryptWriter writer = new EncryptWriter(osw, new LowercaseCipher());
 
         writer.write(lyrics);
         writer.close();
 
-        // Component
         InputStreamReader isr = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
-        // Decorator with Lowercase strategy
         DecryptReader reader = new DecryptReader(isr, new LowercaseCipher());
 
         int c;

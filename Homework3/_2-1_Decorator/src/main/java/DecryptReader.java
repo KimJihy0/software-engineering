@@ -7,9 +7,6 @@ public class DecryptReader extends FilterReader {
     // the cipher engine to use to process stream data
     private final CaesarCipher cipher = new CaesarCipher();
 
-    // the underlying character-input stream
-    private final Reader in;
-
     /* the buffer holding data that have been read in from the
        underlying stream, but have not been processed by the cipher
        engine. the size 512 chars is somewhat randomly chosen */

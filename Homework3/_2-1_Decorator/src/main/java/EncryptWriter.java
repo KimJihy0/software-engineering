@@ -7,9 +7,6 @@ public class EncryptWriter extends FilterWriter {
     // the cipher engine to use to process stream data
     private final CaesarCipher cipher = new CaesarCipher();
 
-    // the underlying character-output stream
-    private final Writer out;
-
     /* the buffer holding one char of incoming data */
     private final char[] ibuffer = new char[1];
 
